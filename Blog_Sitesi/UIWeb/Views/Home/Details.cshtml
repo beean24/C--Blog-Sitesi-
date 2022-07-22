@@ -1,0 +1,100 @@
+﻿<script>
+    $(document).ready(function () {
+        $("#Getir").load( "/bloglar/EtkilesimGetir/" + @Model.Id+"");
+    });
+
+    function Etkilesim(blogid, status) {
+        $.ajax({
+            type: "POST", // Hangi İşlemi Gerçekleştireceğini Belirtiyoruz
+            url: "/JSON/EtkilesimYonetimi", // Hangi URL'e veri gönderilecek
+            data: { BlogId: '' + blogid + '', Status: '' + status + '' }, // Hangi Datalar gönderilecektir.
+            dataType: "json", // Gönderilecek DAtalar'ın formatı.
+            success: function (response) {
+                $("#Getir").load("/bloglar/EtkilesimGetir/" + @Model.Id+"");
+            },
+            error: function (response) {
+                // Javascript çalışmasında sıkıntı var ise burası
+            },
+            failure: function (response) {
+
+            }
+        });
+    }
+</script>
+
+
+        <div class="container">
+
+      
+<div class="content-middle">
+	 	    	<div class="col_1_of_middle span_1_of_middle">
+	 	    		<img  src="/images/@Model.Images" style="margin-left:50px; margin-top:40px;" width="500px" />
+	 	    	</div>
+                   <header class="Interaction" style="text-align:center; background-color:#FAA645; margin-top:5px;">
+                
+                <div class="meta mb-3"><span class="date">@Model.BlogDateTime.ToString("dd-MM-yyyy HH:mm")</span><span class="time" id="Getir"></span><br /><span  class="comment"><a href="#" style="color:black;">@Html.Raw(Model.Comments != null ? Model.Comments.Count : 0) Yorum</a></span></div>
+            </header>
+            
+				<div class="col_1_of_middle span_1_of_middle" style="color:white;">
+				   <h3 style="color:silver; font-size:44px;">@Model.Name</h3>
+	 	    	   <p style="color:white;font-size:20px;"> @Html.Raw(Model.Explanation)</p>
+                     <div class="clear"></div>
+                        </div>
+                         <div class="clear"></div>
+                         <hr />
+                    
+	     <div class="wrap">
+                    <div class="contact">
+	         
+              <div class="contatct-top">
+               <form  action="/Blog/Details/@Model.Id" method="post">
+					
+                   <div class="to">
+                     	<input type="text" class="text"  name="Commenter" placeholder="İsim">
+
+					 	<input  type="text" class="text" name="Email"  placeholder="Email">
+					</div>
+					<div class="text">
+	                   <textarea  value="Message:" name="UserComment" placeholder="Yorum"></textarea>
+                       </div>
+                       <div>
+	               		<input type="submit" value="Yorumu Kaydet">
+	                </div>
+                    
+                    
+
+                       </form>
+                      
+
+	                </div>
+                    </div>
+	                
+                  
+		   </div>
+                
+            </div>
+            <hr />
+                        <div class="blog-post-body" style="margin-top:50px">
+                @if (Model.Comments != null)
+                {
+                    foreach (var item in Model.Comments)
+                    {
+                        if (item.Status == true)
+                        {
+                            <div style="border:solid 0.3mm black;padding:15px; margin:6px 10px 20px; background-color:#DDFFDD; color:black;" >
+                               <div > <b>Yorum Yapan :</b> @item.Commenter <br> </div>
+                               <hr />
+                               <div> <b>Yorum :</b> @item.UserComment</div>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+	 	    	   
+	 	    	</div>
+                
+				
+
+
+
+

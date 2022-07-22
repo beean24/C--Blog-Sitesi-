@@ -1,0 +1,117 @@
+﻿
+
+<div class="slider">
+    <!---start-da-slider----->
+    <div id="da-slider" class="da-slider">
+        @foreach (var item in Model)
+        {
+            <div class="da-slide">
+             <a href="/blog/details/@item.Id">  <h1 href="/blog/Details/@item.Id" style="font-size:56px;">@item.Name</h1></a> 
+                <p style="font-size:10;">
+                    @if (item.Explanation.Length > 100)
+                    {
+                        @Html.Raw(item.Explanation.Substring(0,66))
+
+                    }
+                    else
+                    {
+                        @Html.Raw(item.Explanation)
+
+                    }
+                    ...<a href="#about" class="da-link">DAHA FAZLA</a>
+                <p>
+
+            </div>
+
+        }
+
+        <nav class="da-arrows">
+            <span class="da-arrows-prev"></span>
+            <span class="da-arrows-next"></span>
+        </nav>
+    </div>
+    <!---//End-da-slider----->
+</div>
+
+<div class="main">
+    <div class="content-top">
+        @foreach (var item in Model)
+        {
+
+
+            <div class="col_1_of_projects span_1_of_projects">
+                <a href="#">
+                    <div class="view view-first">
+                        <img src="images/@item.Images" alt="" />
+                        <div class="mask">
+                            <h2 class="title mb-1"><a href="/blog/Details/@item.Id">@item.Name</a></h2>
+                            <p>
+                                @if (item.Explanation.Length > 100)
+                                {
+                                    @Html.Raw(item.Explanation.Substring(0,99))
+                                }
+                                else
+                                {
+                                    @Html.Raw(item.Explanation)
+                                }
+                                ...
+                            <p>
+                                <a class="more-link" href="/blog/details/@item.Id"><div class="info">Daha Fazla &rArr;</div></a>
+
+                                <div id="small-dialog3" class="mfp-hide">
+                                    <div class="pop_up2">
+                                        <img src="/images/pic3.jpg" / alt="" />
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    <h3 class="m_4"><a href="/blog/Details/@item.Id">@item.Name</a></h3>
+                    <p class="m_5">Blogs</p>
+                </a>
+            </div>
+        }
+
+        <div class="clear"></div>
+    </div>
+
+    <div class="m_3"><span class="left_line"></span>Detaylar<span class="right_line"> </span></div>
+    <div class="wmuSlider example">
+        <div class="wmuSliderWrapper">
+            <article style="position: absolute; width: 100%; opacity: 0;">
+                <div class="banner-text">
+                    <p>Bu Siteyi Oluşturmak Çok Kolay Oldu Siz Nasıl Yapamıyorsunuz Anlamıyorum</p>
+                </div>
+                <h3 class="m_6">Sitenin Sahibi, <span class="bg1">Emir Yavuz</span></h3>
+            </article>
+            <article style="position: relative; width: 100%; opacity: 1;">
+                <div class="banner-text">
+                    <p>Hayla Yapamadın Mı Siteni</p>
+                </div>
+                <h3 class="m_6">Sitenin Sahibi, <span class="bg1">Emir Yavuz</span></h3>
+            </article>
+            <article style="position: absolute; width: 100%; opacity: 0;">
+                <div class="banner-text">
+                    <p>Yeter Çok Baktın Hadi Siteden Çık Nazar Değidireceksin!!</p>
+                </div>
+                <h3 class="m_6">Sitenin Sahibi, <span class="bg1">Emir Yavuz</span></h3>
+            </article>
+            <article style="position: absolute; width: 100%; opacity: 0;">
+                <div class="banner-text">
+                    <pre> Sen Hala Burdamısın :( </pre>
+                </div>
+                <h3 class="m_6">Sitenin Sahibi, <span class="bg1">Emir Yavuz</span></h3>
+            </article>
+        </div>
+        <ul class="wmuSliderPagination">
+            <li><a href="#" class="">0</a></li>
+            <li><a href="#" class="class=" wmuActive"">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+        </ul>
+    </div>
+    <script src="js/jquery.wmuSlider.js"></script>
+    <script>
+        $('.example').wmuSlider();
+    </script>
+
+    <div />
